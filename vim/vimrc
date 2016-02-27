@@ -1,0 +1,207 @@
+
+" Vim Stuff
+set nocompatible
+syntax on
+
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
+
+" Vim Gui
+set guioptions-=r       " Remove right-hand scroll bar
+set guioptions-=L       " Remove left-hand scroll bar
+set number              " Show the line number
+set showmatch           " Show matching brackets.
+set autochdir           " automatically change window's cwd to file's dir
+set confirm             " get a dialog when :q, :w, or :wq fails
+set autoread            " Actualiza cambios realizados fuera de vim.
+set clipboard=unnamed
+
+" List completions
+set wildmenu
+set wildmode=full
+set wildignore=*.o,*~,*.pyc
+
+"" Encoding
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+
+" Real programmers don't use TABs but spaces
+set tabstop=4
+set softtabstop=0
+set shiftwidth=4
+set shiftround
+set expandtab
+
+"" Searching
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" Disbale backups
+set nobackup
+set noswapfile
+set nowritebackup
+
+"" Fix backspace indent
+set backspace=indent,eol,start
+
+"" Encoding
+set bomb
+set binary
+
+" Left goes back to the en-prev line
+set whichwrap+=<,>,h,l,[,]
+
+" Disable Scratch-Preview Documentation
+set completeopt-=preview
+
+" Cursor moves accross the wrapped line
+nnoremap <Up> gk
+nnoremap <Down> gj
+
+" Leader Mapping
+let mapleader=' '
+
+"" Split window horizonatal and vertical
+noremap <Leader>h :<C-u>split<CR>
+noremap <Leader>v :<C-u>vsplit<CR>
+
+"" Buffer nav {
+	noremap <leader>q :bp<CR>
+	noremap <leader>w :bn<CR>
+	noremap <leader>e :Bdelete!<CR>
+" }
+
+"" Switching windows
+"noremap <C-j> <C-w>j
+"noremap <C-k> <C-w>k
+"noremap <C-l> <C-w>l
+"noremap <C-h> <C-w>h
+
+
+" shift+arrow Selection Mapping {
+    nmap <S-Up> v<Up>
+    nmap <S-Down> v<Down>
+    nmap <S-Left> v<Left>
+    nmap <S-Right> v<Right>
+    vmap <S-Up> <Up>
+    vmap <S-Down> <Down>
+    vmap <S-Left> <Left>
+    vmap <S-Right> <Right>
+    imap <S-Up> <Esc>v<Up>
+    imap <S-Down> <Esc>v<Down>
+    imap <S-Left> <Esc>v<Left>
+    imap <S-Right> <Esc>v<Right>
+" }
+
+" Keep Visual selection after shifting{
+    vnoremap > <gv
+    vnoremap < >gv
+" }
+
+
+" Pathogen init
+execute pathogen#infect()
+execute pathogen#helptags()
+
+"" Bundles Configuration
+
+" Color scheme {
+    "set background=Dark        " Makes background dark
+    "colorscheme Solarized      " Classic Dark Solarized
+    colorscheme gotham          " Gotham dark theme
+" }
+
+" Airline Status {
+    set laststatus=2
+    let g:airline_powerline_fonts = 1
+    set guifont=Hack:h12
+    let g:airline#extensions#hunks#enabled = 1
+    let g:airline#extensions#branch#enabled = 1
+	let g:airline#extensions#tagbar#enabled = 1
+" }
+
+" NERDTree {
+    map <leader>n :NERDTreeTabsToggle<CR>
+    let nerdtree_tabs_open_on_gui_startup = 0
+    let NERDTreeQuitOnOpen = 1
+    let NERDTreeAutoDeleteBuffer = 1
+    let NERDTreeMinimalUI = 1
+    let NERDTreeDirArrows = 1
+"	let nerdtree_tabs_focus_on_files=1
+" }
+
+" Gundo {
+	nnoremap <leader>u :GundoToggle<CR>
+	set undodir=~/.vim/undodir
+	set undofile
+	set undolevels=1000
+	set undoreload=10000
+" }
+
+" SuperTab {
+	let g:SuperTabContextTextOmniPrecedence = ['&completefunc', '&omnifunc']
+	let g:SuperTabDefaultCompletionType = "context"
+	let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
+	let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
+	let g:SuperTabContextDefaultCompletionType = "<c-p>"
+	let g:SuperTabLongestHighlight = 1
+	let g:SuperTabLongestEnhanced = 1
+" }
+
+" Tagbar CTags {
+	nmap <leader>t :TagbarToggle<CR>
+	let g:tagbar_autofocus = 1
+" }
+
+
+" Unite {
+	nnoremap <C-p> :Unite file_rec/async<cr>
+	nnoremap <space>/ :Unite grep:.<cr>
+	let g:unite_source_history_yank_enable = 1
+	nnoremap <space>y :Unite history/yank<cr>
+	nnoremap <space>s :Unite -quick-match buffer<cr>
+" }
+
+" MatchTagAlways{
+	let g:mta_filetypes = { 
+		\ 'html' : 1,
+		\ 'eruby' : 1,
+		\ 'xhtml' : 1,
+		\ 'xml' : 1,
+		\ 'jinja' : 1,
+		\ 'php' : 1 }
+" }
+
+" Surround-vim {
+	nnoremap <Leader>q" ciw""<Esc>P
+	nnoremap <Leader>q' ciw''<Esc>P
+	nnoremap <Leader>qd daW"=substitute(@@,"'\\\|\"","","g")<CR>P
+" }
+
+"" Completions Stuff
+
+" Omnicompletions {
+	set omnifunc=syntaxcomplete#Complete
+    autocmd FileType css,less setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+	autocmd FileType ruby,eruby setlocal omnifunc=rubycomplete#Complete
+" }
+
+
+"" Switching windows
+"noremap <C-j> <C-w>j
+"noremap <C-k> <C-w>k
+"noremap <C-l> <C-w>l
+"noremap <C-h> <C-w>h
+
+
+
+
+
