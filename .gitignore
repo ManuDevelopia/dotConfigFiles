@@ -1,9 +1,11 @@
 .DS_Store
+
 vim/undodir/*
 vim/bundle/*
 vim/autoload/*
+vim/plugged/*
 
 nvim/undodir/*
 nvim/bundle/*
 nvim/autoload/*
-
+nvim/plugged/*
