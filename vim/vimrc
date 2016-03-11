@@ -1,5 +1,5 @@
 
-" Vim Stuff
+"" Vim Stuff
 set nocompatible
 syntax on
 
@@ -48,53 +48,56 @@ set nowritebackup
 "" Fix backspace indent
 set backspace=indent,eol,start
 
-"" Encoding
-set bomb
-set binary
-
-" Left goes back to the en-prev line
-set whichwrap+=<,>,h,l,[,]
-
 " Disable Scratch-Preview Documentation
 set completeopt-=preview
 
-" Cursor moves accross the wrapped line
-nnoremap <Up> gk
-nnoremap <Down> gj
+"=========================================
+"" Mapping Keys
+"=========================================
 
 " Leader Mapping
 let mapleader=' '
+
+" Cursor moves accross the wrapped line {
+    vmap <silent> <Right> l
+    vmap <silent> <Left> h
+    vmap <silent> <Up> gk
+    vmap <silent> <Down> gj
+    nmap <silent> <Right> l
+    nmap <silent> <Left> h
+    nmap <silent> <Up> gk
+    nmap <silent> <Down> gj
+    imap <silent> <Up> <C-o>gk
+    imap <silent> <Down> <C-o>gj
+"}
+
+" Left goes back to the en-prev line
+set whichwrap+=<,>,h,l,[,]
 
 "" Split window horizonatal and vertical
 noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
 
 "" Buffer nav {
-	noremap <leader>q :bp<CR>
-	noremap <leader>w :bn<CR>
-	noremap <leader>e :Bdelete!<CR>
+    noremap <leader>q :bp<CR>
+    noremap <leader>w :bn<CR>
 " }
 
-"" Switching windows
-"noremap <C-j> <C-w>j
-"noremap <C-k> <C-w>k
-"noremap <C-l> <C-w>l
-"noremap <C-h> <C-w>h
-
-
 " shift+arrow Selection Mapping {
-    nmap <S-Up> v<Up>
-    nmap <S-Down> v<Down>
+    nmap <S-Up>   gh<S-Up>
+    nmap <S-Down> gh<S-Down>
     nmap <S-Left> v<Left>
     nmap <S-Right> v<Right>
-    vmap <S-Up> <Up>
-    vmap <S-Down> <Down>
+
     vmap <S-Left> <Left>
     vmap <S-Right> <Right>
-    imap <S-Up> <Esc>v<Up>
-    imap <S-Down> <Esc>v<Down>
+    vmap <S-Up>   gk
+    vmap <S-Down> gj
+
+    imap <S-Up>   <Esc>gh<S-Up>
+    imap <S-Down> <Esc><Right>gh<S-Down>
     imap <S-Left> <Esc>v<Left>
-    imap <S-Right> <Esc>v<Right>
+    imap <S-Right> <Right><Esc>v<Right>
 " }
 
 " Keep Visual selection after shifting{
@@ -103,9 +106,14 @@ noremap <Leader>v :<C-u>vsplit<CR>
 " }
 
 
+"=========================================
+"" Bundles Pluggins by Pathogen
+"=========================================
+
 " Pathogen init
 execute pathogen#infect()
 execute pathogen#helptags()
+
 
 "" Bundles Configuration
 
@@ -121,7 +129,7 @@ execute pathogen#helptags()
     set guifont=Hack:h12
     let g:airline#extensions#hunks#enabled = 1
     let g:airline#extensions#branch#enabled = 1
-	let g:airline#extensions#tagbar#enabled = 1
+    let g:airline#extensions#tagbar#enabled = 1
 " }
 
 " NERDTree {
@@ -131,77 +139,58 @@ execute pathogen#helptags()
     let NERDTreeAutoDeleteBuffer = 1
     let NERDTreeMinimalUI = 1
     let NERDTreeDirArrows = 1
-"	let nerdtree_tabs_focus_on_files=1
+    "let nerdtree_tabs_focus_on_files=1
 " }
 
+
 " Gundo {
-	nnoremap <leader>u :GundoToggle<CR>
-	set undodir=~/.vim/undodir
-	set undofile
-	set undolevels=1000
-	set undoreload=10000
+    nnoremap <leader>u :GundoToggle<CR>
+    set undodir=~/.vim/undodir
+    set undofile
+    set undolevels=1000
+    set undoreload=10000
+" }
+
+" Tagbar CTags {
+    nmap <leader>t :TagbarToggle<CR>
+    let g:tagbar_autofocus = 1
+" }
+
+" Vim-Commentary Line {
+    nmap <Leader>c <Plug>CommentaryLine
+    xmap <Leader>c <Plug>Commentary
+" }
+
+" Vim-move {
+	let g:move_key_modifier = 'C'
 " }
 
 " SuperTab {
+inoremap <C-Space> <C-x><C-o>
+inoremap <C-@> <C-Space>
+
+"   let g:SuperTabMappingForward = '<Down>'
+"   let g:SuperTabMappingBackward = '<Up>'
+
 	let g:SuperTabContextTextOmniPrecedence = ['&completefunc', '&omnifunc']
 	let g:SuperTabDefaultCompletionType = "context"
 	let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
 	let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
 	let g:SuperTabContextDefaultCompletionType = "<c-p>"
-	let g:SuperTabLongestHighlight = 1
-	let g:SuperTabLongestEnhanced = 1
+	"let g:SuperTabLongestHighlight = 1
+	"let g:SuperTabLongestEnhanced = 1
 " }
 
-" Tagbar CTags {
-	nmap <leader>t :TagbarToggle<CR>
-	let g:tagbar_autofocus = 1
-" }
-
-
-" Unite {
-	nnoremap <C-p> :Unite file_rec/async<cr>
-	nnoremap <space>/ :Unite grep:.<cr>
-	let g:unite_source_history_yank_enable = 1
-	nnoremap <space>y :Unite history/yank<cr>
-	nnoremap <space>s :Unite -quick-match buffer<cr>
-" }
-
-" MatchTagAlways{
-	let g:mta_filetypes = { 
-		\ 'html' : 1,
-		\ 'eruby' : 1,
-		\ 'xhtml' : 1,
-		\ 'xml' : 1,
-		\ 'jinja' : 1,
-		\ 'php' : 1 }
-" }
-
-" Surround-vim {
-	nnoremap <Leader>q" ciw""<Esc>P
-	nnoremap <Leader>q' ciw''<Esc>P
-	nnoremap <Leader>qd daW"=substitute(@@,"'\\\|\"","","g")<CR>P
-" }
 
 "" Completions Stuff
 
 " Omnicompletions {
-	set omnifunc=syntaxcomplete#Complete
+    set omnifunc=syntaxcomplete#Complete
     autocmd FileType css,less setlocal omnifunc=csscomplete#CompleteCSS
     autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
     autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-	autocmd FileType ruby,eruby setlocal omnifunc=rubycomplete#Complete
+    autocmd FileType ruby,eruby setlocal omnifunc=rubycomplete#Complete
 " }
-
-
-"" Switching windows
-"noremap <C-j> <C-w>j
-"noremap <C-k> <C-w>k
-"noremap <C-l> <C-w>l
-"noremap <C-h> <C-w>h
-
-
-
-
 
