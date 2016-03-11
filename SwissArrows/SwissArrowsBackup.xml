@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>height</key>
+		<real>706</real>
+		<key>name</key>
+		<string>Web Browser</string>
+		<key>originX</key>
+		<real>19</real>
+		<key>originY</key>
+		<real>37</real>
+		<key>screenHeight</key>
+		<real>732</real>
+		<key>screenOriginX</key>
+		<real>0.0</real>
+		<key>screenOriginY</key>
+		<real>22</real>
+		<key>screenWidth</key>
+		<real>1280</real>
+		<key>sortIndex</key>
+		<integer>1</integer>
+		<key>width</key>
+		<real>1104</real>
+	</dict>
+	<dict>
+		<key>height</key>
+		<real>418</real>
+		<key>name</key>
+		<string>Finder</string>
+		<key>originX</key>
+		<real>177</real>
+		<key>originY</key>
+		<real>123</real>
+		<key>screenHeight</key>
+		<real>729</real>
+		<key>screenOriginX</key>
+		<real>0.0</real>
+		<key>screenOriginY</key>
+		<real>22</real>
+		<key>screenWidth</key>
+		<real>1280</real>
+		<key>sortIndex</key>
+		<integer>2</integer>
+		<key>width</key>
+		<real>770</real>
+	</dict>
+	<dict>
+		<key>height</key>
+		<real>366</real>
+		<key>name</key>
+		<string>Terminal</string>
+		<key>originX</key>
+		<real>686</real>
+		<key>originY</key>
+		<real>39</real>
+		<key>screenHeight</key>
+		<real>738</real>
+		<key>screenOriginX</key>
+		<real>0.0</real>
+		<key>screenOriginY</key>
+		<real>22</real>
+		<key>screenWidth</key>
+		<real>1280</real>
+		<key>sortIndex</key>
+		<integer>3</integer>
+		<key>width</key>
+		<real>570</real>
+	</dict>
+</array>
+</plist>
