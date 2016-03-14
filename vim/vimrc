@@ -51,6 +51,7 @@ set backspace=indent,eol,start
 " Disable Scratch-Preview Documentation
 set completeopt-=preview
 
+
 "=========================================
 "" Mapping Keys
 "=========================================
@@ -107,20 +108,56 @@ noremap <Leader>v :<C-u>vsplit<CR>
 
 
 "=========================================
-"" Bundles Pluggins by Pathogen
+"" Bundles Pluggins by Vim-Plug
+"
+" to install:
+"     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "=========================================
 
-" Pathogen init
-execute pathogen#infect()
-execute pathogen#helptags()
+" Vim-Plug init
+call plug#begin('~/.vim/plugged')
+
+    Plug 'rking/ag.vim'
+    Plug 'cohama/agit.vim'
+    Plug 'raimondi/delimitmate'
+    Plug 'sjl/gundo.vim'
+    Plug 'othree/html5.vim'
+    Plug 'tpope/vim-commentary'
+    Plug 'scrooloose/nerdtree'
+    Plug 'jistr/vim-nerdtree-tabs'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'ervandew/supertab'
+    Plug 'scrooloose/syntastic'
+    Plug 'majutsushi/tagbar'
+    Plug 'bling/vim-airline'
+    Plug 'chiel92/vim-autoformat'
+    Plug 'altercation/vim-colors-solarized'
+    Plug 'ap/vim-css-color'
+    Plug 'tpope/vim-fugitive'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'whatyouhide/vim-gotham'
+    Plug 'matze/vim-move'
+    Plug 'jistr/vim-nerdtree-tabs'
+    Plug 'tpope/vim-surround'
+    Plug 'bronson/vim-trailing-whitespace'
+    Plug 'easymotion/vim-easymotion'
+
+" Add plugins to &runtimepath
+call plug#end()
 
 
 "" Bundles Configuration
 
 " Color scheme {
     "set background=Dark        " Makes background dark
-    "colorscheme Solarized      " Classic Dark Solarized
+    "colorscheme solarized      " Classic Dark Solarized
     colorscheme gotham          " Gotham dark theme
+"}
+
+" Visual limit of 80 column (Load after colorscheme) {
+    let &colorcolumn="80,".join(range(120,999),",")
+    highlight ColorColumn ctermbg=235 guibg=#0A1F2C
 " }
 
 " Airline Status {
@@ -130,10 +167,6 @@ execute pathogen#helptags()
     let g:airline#extensions#hunks#enabled = 1
     let g:airline#extensions#branch#enabled = 1
     let g:airline#extensions#tagbar#enabled = 1
-
-    " let g:airline#extensions#tabline#enabled = 1
-    " let g:airline#extensions#tabline#left_sep = ' '
-    " let g:airline#extensions#tabline#left_alt_sep = '|'
 " }
 
 " NERDTree {
@@ -145,7 +178,6 @@ execute pathogen#helptags()
     let NERDTreeDirArrows = 1
     "let nerdtree_tabs_focus_on_files=1
 " }
-
 
 " Gundo {
     nnoremap <leader>u :GundoToggle<CR>
@@ -209,9 +241,8 @@ execute pathogen#helptags()
     autocmd FileType ruby,eruby setlocal omnifunc=rubycomplete#Complete
 " }
 
-
 " Stackoverflow:
-" How to make ctrl + space: Autocomplete 
+" How to make ctrl + space: Autocomplete
 " https://stackoverflow.com/questions/510503/ctrlspace-for-omni-and-keyword-completion-in-vim?rq=1
     " inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
     " \ "\<lt>C-n>" :
