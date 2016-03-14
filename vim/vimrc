@@ -130,6 +130,10 @@ execute pathogen#helptags()
     let g:airline#extensions#hunks#enabled = 1
     let g:airline#extensions#branch#enabled = 1
     let g:airline#extensions#tagbar#enabled = 1
+
+    " let g:airline#extensions#tabline#enabled = 1
+    " let g:airline#extensions#tabline#left_sep = ' '
+    " let g:airline#extensions#tabline#left_alt_sep = '|'
 " }
 
 " NERDTree {
@@ -165,20 +169,31 @@ execute pathogen#helptags()
 	let g:move_key_modifier = 'C'
 " }
 
-" SuperTab {
-inoremap <C-Space> <C-x><C-o>
-inoremap <C-@> <C-Space>
+" Syntastic {
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
 
-"   let g:SuperTabMappingForward = '<Down>'
-"   let g:SuperTabMappingBackward = '<Up>'
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
+" }
+
+" SuperTab {
+"inoremap <C-Space> <C-x><C-o>
+"inoremap <C-@> <C-Space>
+
+""   let g:SuperTabMappingForward = '<Down>'
+""   let g:SuperTabMappingBackward = '<Up>'
 
 	let g:SuperTabContextTextOmniPrecedence = ['&completefunc', '&omnifunc']
 	let g:SuperTabDefaultCompletionType = "context"
 	let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
 	let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
-	let g:SuperTabContextDefaultCompletionType = "<c-p>"
-	"let g:SuperTabLongestHighlight = 1
-	"let g:SuperTabLongestEnhanced = 1
+"	let g:SuperTabContextDefaultCompletionType = "<c-p>"
+"	"let g:SuperTabLongestHighlight = 1
+"	"let g:SuperTabLongestEnhanced = 1
 " }
 
 
@@ -194,3 +209,13 @@ inoremap <C-@> <C-Space>
     autocmd FileType ruby,eruby setlocal omnifunc=rubycomplete#Complete
 " }
 
+
+" Stackoverflow:
+" How to make ctrl + space: Autocomplete 
+" https://stackoverflow.com/questions/510503/ctrlspace-for-omni-and-keyword-completion-in-vim?rq=1
+    " inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
+    " \ "\<lt>C-n>" :
+    " \ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
+    " \ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
+    " \ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
+    " imap <C-@> <C-Space>
