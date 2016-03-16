@@ -56,8 +56,15 @@ set completeopt-=preview
 set noerrorbells
 set visualbell
 
+"=========================================
+"" Behaviours
+"=========================================
+
 " Left goes back to the en-prev line
 set whichwrap+=<,>,h,l,[,]
+
+" Remove blank spaces before save
+autocmd BufWritePre * :%s/\s\+$//e
 
 
 "=========================================
@@ -107,7 +114,7 @@ noremap <Leader>v :<C-u>vsplit<CR>
 
     imap <S-Up>   <Esc>gh<S-Up>
     imap <S-Down> <Esc><Right>gh<S-Down>
-    imap <S-Left> <Esc>v<Left>
+    imap <S-Left> <Esc>v<Left><Right>
     imap <S-Right> <Right><Esc>v<Right>
 " }
 
