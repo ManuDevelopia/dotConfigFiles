@@ -10,6 +10,7 @@ filetype indent on
 " Vim Gui
 set guioptions-=r       " Remove right-hand scroll bar
 set guioptions-=L       " Remove left-hand scroll bar
+set guioptions-=b       " bottom scroll bar
 set number              " Show the line number
 set showmatch           " Show matching brackets.
 set autochdir           " automatically change window's cwd to file's dir
@@ -20,7 +21,7 @@ set clipboard=unnamed
 " List completions
 set wildmenu
 set wildmode=full
-set wildignore=*.o,*~,*.pyc
+set wildignore=*.o,*~,*.pyc,*.DS_STORE,*.db,node_modules/**,*.jpg,*.png,*.gif
 
 "" Encoding
 set encoding=utf-8
@@ -51,6 +52,13 @@ set backspace=indent,eol,start
 " Disable Scratch-Preview Documentation
 set completeopt-=preview
 
+"" Remove sounds effects
+set noerrorbells
+set visualbell
+
+" Left goes back to the en-prev line
+set whichwrap+=<,>,h,l,[,]
+
 
 "=========================================
 "" Mapping Keys
@@ -72,16 +80,18 @@ let mapleader=' '
     imap <silent> <Down> <C-o>gj
 "}
 
-" Left goes back to the en-prev line
-set whichwrap+=<,>,h,l,[,]
 
 "" Split window horizonatal and vertical
 noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
 
 "" Buffer nav {
+    "" Prev Buff
     noremap <leader>q :bp<CR>
+    "" Next Buff
     noremap <leader>w :bn<CR>
+    "" Close buffer
+    noremap <leader>e :bd<CR>
 " }
 
 " shift+arrow Selection Mapping {
@@ -127,7 +137,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'scrooloose/nerdtree'
     Plug 'jistr/vim-nerdtree-tabs'
     Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'ervandew/supertab'
+    " Plug 'ervandew/supertab'
     Plug 'scrooloose/syntastic'
     Plug 'majutsushi/tagbar'
     Plug 'bling/vim-airline'
@@ -142,6 +152,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-surround'
     Plug 'bronson/vim-trailing-whitespace'
     Plug 'easymotion/vim-easymotion'
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --tern-completer' }
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -164,6 +175,7 @@ call plug#end()
     set laststatus=2
     let g:airline_powerline_fonts = 1
     set guifont=Hack:h12
+    let g:airline#extensions#syntastic#enabled = 1
     let g:airline#extensions#hunks#enabled = 1
     let g:airline#extensions#branch#enabled = 1
     let g:airline#extensions#tagbar#enabled = 1
@@ -171,16 +183,20 @@ call plug#end()
 
 " NERDTree {
     map <leader>n :NERDTreeTabsToggle<CR>
-    let nerdtree_tabs_open_on_gui_startup = 0
-    let NERDTreeQuitOnOpen = 1
-    let NERDTreeAutoDeleteBuffer = 1
-    let NERDTreeMinimalUI = 1
-    let NERDTreeDirArrows = 1
-    "let nerdtree_tabs_focus_on_files=1
+
+    let g:NERDTreeQuitOnOpen = 1
+    let g:NERDTreeAutoDeleteBuffer = 1
+    let g:NERDTreeMinimalUI = 1
+    let g:NERDTreeDirArrows = 1
+
+    "" NERDTree Tabs
+    let g:nerdtree_tabs_open_on_new_tab = 0
+    let g:nerdtree_tabs_open_on_gui_startup = 0
 " }
 
 " Gundo {
     nnoremap <leader>u :GundoToggle<CR>
+
     set undodir=~/.vim/undodir
     set undofile
     set undolevels=1000
@@ -189,6 +205,7 @@ call plug#end()
 
 " Tagbar CTags {
     nmap <leader>t :TagbarToggle<CR>
+
     let g:tagbar_autofocus = 1
 " }
 
@@ -210,7 +227,18 @@ call plug#end()
     let g:syntastic_auto_loc_list = 1
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 0
+
+    " Python syntastic
+    let g:syntastic_python_checkers=['python', 'flake8']
+    let g:syntastic_python_flake8_post_args='--ignore=W391'
+
 " }
+
+
+"============================================
+"" Experimetal Stuff
+"============================================
+
 
 " SuperTab {
 "inoremap <C-Space> <C-x><C-o>
@@ -219,10 +247,10 @@ call plug#end()
 ""   let g:SuperTabMappingForward = '<Down>'
 ""   let g:SuperTabMappingBackward = '<Up>'
 
-	let g:SuperTabContextTextOmniPrecedence = ['&completefunc', '&omnifunc']
-	let g:SuperTabDefaultCompletionType = "context"
-	let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
-	let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
+	" let g:SuperTabContextTextOmniPrecedence = ['&completefunc', '&omnifunc']
+	" let g:SuperTabDefaultCompletionType = "context"
+	" let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
+	" let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
 "	let g:SuperTabContextDefaultCompletionType = "<c-p>"
 "	"let g:SuperTabLongestHighlight = 1
 "	"let g:SuperTabLongestEnhanced = 1
@@ -232,13 +260,13 @@ call plug#end()
 "" Completions Stuff
 
 " Omnicompletions {
-    set omnifunc=syntaxcomplete#Complete
-    autocmd FileType css,less setlocal omnifunc=csscomplete#CompleteCSS
-    autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-    autocmd FileType ruby,eruby setlocal omnifunc=rubycomplete#Complete
+    " set omnifunc=syntaxcomplete#Complete
+    " autocmd FileType css,less setlocal omnifunc=csscomplete#CompleteCSS
+    " autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
+    " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    " autocmd FileType ruby,eruby setlocal omnifunc=rubycomplete#Complete
 " }
 
 " Stackoverflow:
