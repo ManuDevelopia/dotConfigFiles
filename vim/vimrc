@@ -16,7 +16,6 @@ set showmatch           " Show matching brackets.
 set autochdir           " automatically change window's cwd to file's dir
 set confirm             " get a dialog when :q, :w, or :wq fails
 set autoread            " Actualiza cambios realizados fuera de vim.
-set clipboard=unnamed
 
 " List completions
 set wildmenu
