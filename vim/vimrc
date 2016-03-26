@@ -1,13 +1,13 @@
 
 "" Vim Stuff
 set nocompatible
-syntax on
 
-" Enable filetype plugins
+" Enable filetype and syntax plugins
 filetype plugin on
 filetype indent on
+syntax on
 
-" Vim Gui
+" Vim Gui Config
 set guioptions-=r       " Remove right-hand scroll bar
 set guioptions-=L       " Remove left-hand scroll bar
 set guioptions-=b       " bottom scroll bar
@@ -16,6 +16,13 @@ set showmatch           " Show matching brackets.
 set autochdir           " automatically change window's cwd to file's dir
 set confirm             " get a dialog when :q, :w, or :wq fails
 set autoread            " Actualiza cambios realizados fuera de vim.
+
+
+set ruler			"show current position
+set magic			"magic for regular expression
+set showcmd			"display incomplete command in the lower right corner of the console
+
+
 
 " List completions
 set wildmenu
@@ -45,9 +52,6 @@ set nobackup
 set noswapfile
 set nowritebackup
 
-"" Fix backspace indent
-set backspace=indent,eol,start
-
 " Disable Scratch-Preview Documentation
 set completeopt-=preview
 
@@ -55,9 +59,27 @@ set completeopt-=preview
 set noerrorbells
 set visualbell
 
+"" Testing features
+set autoindent          " always set autoindenting on
+set smartindent         " smart indent
+set showcmd             " display incomplete commands
+set ttyfast             " smoother changes
+
+"" Set the init window size
+set lines=38
+set columns=100
+
+" set UTF-8 encoding
+set enc=utf-8
+set fenc=utf-8
+set termencoding=utf-8
+
 "=========================================
 "" Behaviours
 "=========================================
+
+"" Fix backspace indent
+set backspace=indent,eol,start
 
 " Left goes back to the en-prev line
 set whichwrap+=<,>,h,l,[,]
@@ -65,6 +87,8 @@ set whichwrap+=<,>,h,l,[,]
 " Remove blank spaces before save
 autocmd BufWritePre * :%s/\s\+$//e
 
+" auto reload .vimrc when changed, this avoids reopening vim
+autocmd! bufwritepost .vimrc source %
 
 "=========================================
 "" Mapping Keys
@@ -84,8 +108,10 @@ let mapleader=' '
     nmap <silent> <Down> gj
     imap <silent> <Up> <C-o>gk
     imap <silent> <Down> <C-o>gj
-"}
+    " imap <silent> <Right> <C-o>l
+    " imap <silent> <Left> <C-o>h
 
+"}
 
 "" Split window horizonatal and vertical
 noremap <Leader>h :<C-u>split<CR>
@@ -101,20 +127,20 @@ noremap <Leader>v :<C-u>vsplit<CR>
 " }
 
 " shift+arrow Selection Mapping {
-    nmap <S-Up>   gh<S-Up>
-    nmap <S-Down> gh<S-Down>
-    nmap <S-Left> v<Left>
-    nmap <S-Right> v<Right>
+    nmap <S-Up>     gh<S-Up>
+    nmap <S-Down>   gh<S-Down>
+    nmap <S-Left>   v<C-g><Left>
+    nmap <S-Right>  v<C-g><Right>
 
-    vmap <S-Left> <Left>
-    vmap <S-Right> <Right>
-    vmap <S-Up>   gk
-    vmap <S-Down> gj
+    vmap <S-Left>   <Left>
+    vmap <S-Right>  <Right>
+    vmap <S-Up>     gk
+    vmap <S-Down>   gj
 
-    imap <S-Up>   <Esc>gh<S-Up>
-    imap <S-Down> <Esc><Right>gh<S-Down>
-    imap <S-Left> <Esc>v<Left><Right>
-    imap <S-Right> <Right><Esc>v<Right>
+    imap <S-Up>     <Esc>gh<S-Up>
+    imap <S-Down>   <Esc><Right>gh<S-Down>
+    imap <S-Left>   <Esc>v<C-g><Left><Right>
+    imap <S-Right>  <Right><Esc>v<C-g>
 " }
 
 " Keep Visual selection after shifting{
@@ -127,38 +153,58 @@ noremap <Leader>v :<C-u>vsplit<CR>
 "" Bundles Pluggins by Vim-Plug
 "
 " to install:
-"     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "=========================================
 
 " Vim-Plug init
 call plug#begin('~/.vim/plugged')
 
+    " Vim Editor Enhancement
     Plug 'rking/ag.vim'
-    Plug 'cohama/agit.vim'
-    Plug 'raimondi/delimitmate'
+""    Plug 'raimondi/delimitmate'
+    Plug 'jiangmiao/auto-pairs'
     Plug 'sjl/gundo.vim'
-    Plug 'othree/html5.vim'
     Plug 'tpope/vim-commentary'
-    Plug 'scrooloose/nerdtree'
-    Plug 'jistr/vim-nerdtree-tabs'
-    Plug 'Xuyuanp/nerdtree-git-plugin'
-    " Plug 'ervandew/supertab'
-    Plug 'scrooloose/syntastic'
-    Plug 'majutsushi/tagbar'
-    Plug 'bling/vim-airline'
     Plug 'chiel92/vim-autoformat'
-    Plug 'altercation/vim-colors-solarized'
-    Plug 'ap/vim-css-color'
-    Plug 'tpope/vim-fugitive'
-    Plug 'airblade/vim-gitgutter'
-    Plug 'whatyouhide/vim-gotham'
     Plug 'matze/vim-move'
-    Plug 'jistr/vim-nerdtree-tabs'
     Plug 'tpope/vim-surround'
     Plug 'bronson/vim-trailing-whitespace'
     Plug 'easymotion/vim-easymotion'
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --tern-completer' }
+
+    " NERD Tree File manager
+    Plug 'scrooloose/nerdtree'
+    Plug 'jistr/vim-nerdtree-tabs'
+    " Plug 'Xuyuanp/nerdtree-git-plugin'
+
+    " Control Version
+    Plug 'cohama/agit.vim'
+    Plug 'tpope/vim-fugitive'
+    Plug 'airblade/vim-gitgutter'
+
+    "Languajes Support
+    Plug 'scrooloose/syntastic'
+    Plug 'majutsushi/tagbar'
+    Plug 'pangloss/vim-javascript'
+    Plug 'ternjs/tern_for_vim'
+    Plug 'ap/vim-css-color'
+    Plug 'othree/html5.vim'
+
+    " Code completion
+    " Plug 'ervandew/supertab'
+    " Plug 'vim-scripts/UltiSnips'
+    " Plug 'honza/vim-snippets'
+    Plug 'mattn/emmet-vim'
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer --clang-completer' }
+
+    " Themes & Visual look and feel
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'altercation/vim-colors-solarized'
+    Plug 'whatyouhide/vim-gotham'
+    Plug 'tomasr/molokai'
+
+"}
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -167,8 +213,8 @@ call plug#end()
 "" Bundles Configuration
 
 " Color scheme {
-    "set background=Dark        " Makes background dark
-    "colorscheme solarized      " Classic Dark Solarized
+    " set background=dark        " Makes background dark
+    " colorscheme solarized      " Classic Dark Solarized
     colorscheme gotham          " Gotham dark theme
 "}
 
@@ -179,9 +225,9 @@ call plug#end()
 
 " Airline Status {
     set laststatus=2
-    let g:airline_powerline_fonts = 1
     set guifont=Hack:h12
-    let g:airline#extensions#syntastic#enabled = 1
+
+    let g:airline_powerline_fonts = 1
     let g:airline#extensions#hunks#enabled = 1
     let g:airline#extensions#branch#enabled = 1
     let g:airline#extensions#tagbar#enabled = 1
@@ -231,56 +277,32 @@ call plug#end()
 
     let g:syntastic_always_populate_loc_list = 1
     let g:syntastic_auto_loc_list = 1
+
+    " show any linting errors immediately
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 0
+
+    " enable all checkers on same file
+    "let g:syntastic_aggregate_errors = 1
 
     " Python syntastic
     let g:syntastic_python_checkers=['python', 'flake8']
     let g:syntastic_python_flake8_post_args='--ignore=W391'
 
+    " use jshint
+    let g:syntastic_javascript_checkers = ['jshint']
+
+    " Markdown
+    let g:syntastic_markdown_checkers = ['mdl']
+
+    " Other non used syntax checkers
+    " let g:syntastic_c_checkers = ['gcc']
+    " let g:syntastic_cpp_checkers = ['cppcheck' , 'gcc' , 'make']
+    " let g:syntastic_matlab_checkers = ['mlint']
+    " let g:syntastic_text_checkers = ['language_check' , 'atdtool']
+
+    " let g:syntastic_cpp_compiler = 'clang++' " C++ compiler
+    " let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++' " C++11 support
+    " let g:syntastic_cpp_compiler_options = ' -std=c++1y' " C++14 support
+
 " }
-
-
-"============================================
-"" Experimetal Stuff
-"============================================
-
-
-" SuperTab {
-"inoremap <C-Space> <C-x><C-o>
-"inoremap <C-@> <C-Space>
-
-""   let g:SuperTabMappingForward = '<Down>'
-""   let g:SuperTabMappingBackward = '<Up>'
-
-	" let g:SuperTabContextTextOmniPrecedence = ['&completefunc', '&omnifunc']
-	" let g:SuperTabDefaultCompletionType = "context"
-	" let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
-	" let g:SuperTabContextDiscoverDiscovery = ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
-"	let g:SuperTabContextDefaultCompletionType = "<c-p>"
-"	"let g:SuperTabLongestHighlight = 1
-"	"let g:SuperTabLongestEnhanced = 1
-" }
-
-
-"" Completions Stuff
-
-" Omnicompletions {
-    " set omnifunc=syntaxcomplete#Complete
-    " autocmd FileType css,less setlocal omnifunc=csscomplete#CompleteCSS
-    " autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
-    " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-    " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-    " autocmd FileType ruby,eruby setlocal omnifunc=rubycomplete#Complete
-" }
-
-" Stackoverflow:
-" How to make ctrl + space: Autocomplete
-" https://stackoverflow.com/questions/510503/ctrlspace-for-omni-and-keyword-completion-in-vim?rq=1
-    " inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
-    " \ "\<lt>C-n>" :
-    " \ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
-    " \ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
-    " \ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
-    " imap <C-@> <C-Space>
