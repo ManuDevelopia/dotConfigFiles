@@ -13,26 +13,24 @@ set guioptions-=L       " Remove left-hand scroll bar
 set guioptions-=b       " bottom scroll bar
 set number              " Show the line number
 set showmatch           " Show matching brackets.
-set autochdir           " automatically change window's cwd to file's dir
+set autochdir           " Automatically change window's cwd to file's dir
 set confirm             " get a dialog when :q, :w, or :wq fails
-set autoread            " Actualiza cambios realizados fuera de vim.
-
-
-set ruler			"show current position
-set magic			"magic for regular expression
-set showcmd			"display incomplete command in the lower right corner of the console
-
-
+set autoread            " Watch for external changes of a file
+set ruler		" show current position
+set magic		" magic for regular expression
+set showcmd		" display incomplete command in the lower right corner of the console
 
 " List completions
 set wildmenu
 set wildmode=full
 set wildignore=*.o,*~,*.pyc,*.DS_STORE,*.db,node_modules/**,*.jpg,*.png,*.gif
 
-"" Encoding
+"" Encoding set UTF-8 encoding
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
+set fenc=utf-8
+set termencoding=utf-8
 
 " Real programmers don't use TABs but spaces
 set tabstop=4
@@ -52,27 +50,12 @@ set nobackup
 set noswapfile
 set nowritebackup
 
-" Disable Scratch-Preview Documentation
-set completeopt-=preview
-
-"" Remove sounds effects
-set noerrorbells
-set visualbell
-
-"" Testing features
-set autoindent          " always set autoindenting on
-set smartindent         " smart indent
-set showcmd             " display incomplete commands
-set ttyfast             " smoother changes
-
 "" Set the init window size
 set lines=38
 set columns=100
 
-" set UTF-8 encoding
-set enc=utf-8
-set fenc=utf-8
-set termencoding=utf-8
+" FishShell support for Nerdtree-tabs-git combo
+set shell=sh
 
 "=========================================
 "" Behaviours
@@ -85,10 +68,9 @@ set backspace=indent,eol,start
 set whichwrap+=<,>,h,l,[,]
 
 " Remove blank spaces before save
-autocmd BufWritePre * :%s/\s\+$//e
+"autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :FixWhitespace " by Plug-bronson/vim-trailing-whitespace
 
-" auto reload .vimrc when changed, this avoids reopening vim
-autocmd! bufwritepost .vimrc source %
 
 "=========================================
 "" Mapping Keys
@@ -108,8 +90,8 @@ let mapleader=' '
     nmap <silent> <Down> gj
     imap <silent> <Up> <C-o>gk
     imap <silent> <Down> <C-o>gj
-    " imap <silent> <Right> <C-o>l
-    " imap <silent> <Left> <C-o>h
+    imap <silent> <Right> <C-o>l
+    imap <silent> <Left> <C-o>h
 
 "}
 
@@ -140,7 +122,7 @@ noremap <Leader>v :<C-u>vsplit<CR>
     imap <S-Up>     <Esc>gh<S-Up>
     imap <S-Down>   <Esc><Right>gh<S-Down>
     imap <S-Left>   <Esc>v<C-g><Left><Right>
-    imap <S-Right>  <Right><Esc>v<C-g>
+    imap <S-Right>  <Right><Esc>v<C-g><Right><Left>
 " }
 
 " Keep Visual selection after shifting{
@@ -148,69 +130,62 @@ noremap <Leader>v :<C-u>vsplit<CR>
     vnoremap < >gv
 " }
 
-
 "=========================================
 "" Bundles Pluggins by Vim-Plug
 "
 " to install:
-     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "=========================================
 
 " Vim-Plug init
 call plug#begin('~/.vim/plugged')
 
-    " Vim Editor Enhancement
-    Plug 'rking/ag.vim'
-""    Plug 'raimondi/delimitmate'
-    Plug 'jiangmiao/auto-pairs'
+" Vim Packages {
+
+    " Vim Editor Enhancements
     Plug 'sjl/gundo.vim'
     Plug 'tpope/vim-commentary'
-    Plug 'chiel92/vim-autoformat'
-    Plug 'matze/vim-move'
-    Plug 'tpope/vim-surround'
+    Plug 'jiangmiao/auto-pairs'
     Plug 'bronson/vim-trailing-whitespace'
-    Plug 'easymotion/vim-easymotion'
 
-    " NERD Tree File manager
-    Plug 'scrooloose/nerdtree'
-    Plug 'jistr/vim-nerdtree-tabs'
-    " Plug 'Xuyuanp/nerdtree-git-plugin'
+    " Unite
+    " Plug 'Shougo/unite.vim'
+    " Plug 'Shougo/vimproc.vim', {'do': 'make' }
+
+    " Themes & Visual look and feel
+    Plug 'vim-airline/vim-airline'
+    Plug 'altercation/vim-colors-solarized'
+    Plug 'whatyouhide/vim-gotham'
+    Plug 'tomasr/molokai'
+    Plug 'ninja/sky'
 
     " Control Version
     Plug 'cohama/agit.vim'
     Plug 'tpope/vim-fugitive'
     Plug 'airblade/vim-gitgutter'
 
-    "Languajes Support
-    Plug 'scrooloose/syntastic'
-    Plug 'majutsushi/tagbar'
-    Plug 'pangloss/vim-javascript'
-    Plug 'ternjs/tern_for_vim'
-    Plug 'ap/vim-css-color'
-    Plug 'othree/html5.vim'
+    " NERD Tree File manager
+    Plug 'scrooloose/nerdtree'
+    Plug 'jistr/vim-nerdtree-tabs'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
 
-    " Code completion
-    " Plug 'ervandew/supertab'
-    " Plug 'vim-scripts/UltiSnips'
-    " Plug 'honza/vim-snippets'
-    Plug 'mattn/emmet-vim'
+    " Languajes Support
+
+    " Completion and utilities
+    Plug 'lilydjwg/colorizer'
+    Plug 'majutsushi/tagbar'
+    Plug 'scrooloose/syntastic'
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer --clang-completer' }
 
-    " Themes & Visual look and feel
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-    Plug 'altercation/vim-colors-solarized'
-    Plug 'whatyouhide/vim-gotham'
-    Plug 'tomasr/molokai'
-
-"}
+" }
 
 " Add plugins to &runtimepath
 call plug#end()
 
-
-"" Bundles Configuration
+"=========================================
+"" Vim Look and Feel Configuration
+"=========================================
 
 " Color scheme {
     " set background=dark        " Makes background dark
@@ -222,6 +197,10 @@ call plug#end()
     let &colorcolumn="80,".join(range(120,999),",")
     highlight ColorColumn ctermbg=235 guibg=#0A1F2C
 " }
+
+"=========================================
+"" Bundles Configuration
+"=========================================
 
 " Airline Status {
     set laststatus=2
@@ -266,43 +245,13 @@ call plug#end()
     xmap <Leader>c <Plug>Commentary
 " }
 
-" Vim-move {
-	let g:move_key_modifier = 'C'
-" }
 
-" Syntastic {
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
+""" Experimental settings and actions
 
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
+" Reload vimrc configuration when changes
+autocmd! bufwritepost vimrc source ~/.vimrc
 
-    " show any linting errors immediately
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
+" Indents
+set autoindent	 " Copy indent from current line when starting a new line
+set smartindent  " Do smart autoindenting when starting a new line.
 
-    " enable all checkers on same file
-    "let g:syntastic_aggregate_errors = 1
-
-    " Python syntastic
-    let g:syntastic_python_checkers=['python', 'flake8']
-    let g:syntastic_python_flake8_post_args='--ignore=W391'
-
-    " use jshint
-    let g:syntastic_javascript_checkers = ['jshint']
-
-    " Markdown
-    let g:syntastic_markdown_checkers = ['mdl']
-
-    " Other non used syntax checkers
-    " let g:syntastic_c_checkers = ['gcc']
-    " let g:syntastic_cpp_checkers = ['cppcheck' , 'gcc' , 'make']
-    " let g:syntastic_matlab_checkers = ['mlint']
-    " let g:syntastic_text_checkers = ['language_check' , 'atdtool']
-
-    " let g:syntastic_cpp_compiler = 'clang++' " C++ compiler
-    " let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++' " C++11 support
-    " let g:syntastic_cpp_compiler_options = ' -std=c++1y' " C++14 support
-
-" }

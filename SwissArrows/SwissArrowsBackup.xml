@@ -68,5 +68,27 @@
 		<key>width</key>
 		<real>570</real>
 	</dict>
+	<dict>
+		<key>height</key>
+		<real>557</real>
+		<key>name</key>
+		<string>Vim</string>
+		<key>originX</key>
+		<real>467</real>
+		<key>originY</key>
+		<real>91</real>
+		<key>screenHeight</key>
+		<real>745</real>
+		<key>screenOriginX</key>
+		<real>0.0</real>
+		<key>screenOriginY</key>
+		<real>22</real>
+		<key>screenWidth</key>
+		<real>1280</real>
+		<key>sortIndex</key>
+		<integer>4</integer>
+		<key>width</key>
+		<real>703</real>
+	</dict>
 </array>
 </plist>
