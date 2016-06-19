@@ -16,9 +16,10 @@ set showmatch           " Show matching brackets.
 set autochdir           " Automatically change window's cwd to file's dir
 set confirm             " get a dialog when :q, :w, or :wq fails
 set autoread            " Watch for external changes of a file
-set ruler		" show current position
-set magic		" magic for regular expression
-set showcmd		" display incomplete command in the lower right corner of the console
+set ruler		        " show current position
+set magic	        	" magic for regular expression
+set showcmd		        " display incomplete commands
+set clipboard=unnamedplus " Enable system clipboard
 
 " List completions
 set wildmenu
@@ -71,6 +72,9 @@ set whichwrap+=<,>,h,l,[,]
 "autocmd BufWritePre * :%s/\s\+$//e
 autocmd BufWritePre * :FixWhitespace " by Plug-bronson/vim-trailing-whitespace
 
+" Close Preview after selection is made
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 "=========================================
 "" Mapping Keys
@@ -155,6 +159,7 @@ call plug#begin('~/.vim/plugged')
 
     " Themes & Visual look and feel
     Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
     Plug 'altercation/vim-colors-solarized'
     Plug 'whatyouhide/vim-gotham'
     Plug 'tomasr/molokai'
@@ -188,8 +193,8 @@ call plug#end()
 "=========================================
 
 " Color scheme {
-    " set background=dark        " Makes background dark
-    " colorscheme solarized      " Classic Dark Solarized
+    "set background=dark        " Makes background dark
+    "colorscheme solarized      " Classic Dark Solarized
     colorscheme gotham          " Gotham dark theme
 "}
 
@@ -210,6 +215,20 @@ call plug#end()
     let g:airline#extensions#hunks#enabled = 1
     let g:airline#extensions#branch#enabled = 1
     let g:airline#extensions#tagbar#enabled = 1
+
+    " Tabline
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#show_tab_type = 0
+    let g:airline#extensions#tabline#show_close_button = 1
+    let g:airline#extensions#tabline#show_splits = 0
+    let g:airline#extensions#tabline#show_buffers = 0
+    let g:airline#extensions#tabline#left_sep = ' '
+    let g:airline#extensions#tabline#left_alt_sep = '|'
+    let g:airline#extensions#tabline#buffer_min_count = 1
+    let g:airline#extensions#tabline#tab_min_count = 1
+    let g:airline_exclude_preview=1
+    let airline#extensions#tabline#ignore_bufadd_pat =
+            \ '\c\vgundo|undotree|vimfiler|tagbar|nerd_tree'
 " }
 
 " NERDTree {
