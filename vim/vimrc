@@ -58,6 +58,10 @@ set columns=100
 " FishShell support for Nerdtree-tabs-git combo
 set shell=sh
 
+" Indents
+set autoindent	 " Copy indent from current line when starting a new line
+set smartindent  " Do smart autoindenting when starting a new line.
+
 "=========================================
 "" Behaviours
 "=========================================
@@ -72,7 +76,7 @@ set whichwrap+=<,>,h,l,[,]
 "autocmd BufWritePre * :%s/\s\+$//e
 autocmd BufWritePre * :FixWhitespace " by Plug-bronson/vim-trailing-whitespace
 
-" Close Preview after selection is made
+" autoClose Preview after selection is made
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
@@ -96,7 +100,6 @@ let mapleader=' '
     imap <silent> <Down> <C-o>gj
     imap <silent> <Right> <C-o>l
     imap <silent> <Left> <C-o>h
-
 "}
 
 "" Split window horizonatal and vertical
@@ -266,11 +269,4 @@ call plug#end()
 
 
 """ Experimental settings and actions
-
-" Reload vimrc configuration when changes
-autocmd! bufwritepost vimrc source ~/.vimrc
-
-" Indents
-set autoindent	 " Copy indent from current line when starting a new line
-set smartindent  " Do smart autoindenting when starting a new line.
 

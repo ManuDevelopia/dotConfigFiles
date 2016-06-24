@@ -19,6 +19,7 @@ set autoread            " Watch for external changes of a file
 set ruler		" show current position
 set magic		" magic for regular expression
 set showcmd		" display incomplete command in the lower right corner of the console
+set clipboard=unnamedplus
 
 " List completions
 set wildmenu
@@ -85,6 +86,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     " Themes & Visual look and feel
     Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
     Plug 'altercation/vim-colors-solarized'
     Plug 'whatyouhide/vim-gotham'
     Plug 'tomasr/molokai'
@@ -94,6 +96,12 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'tpope/vim-commentary'
     Plug 'jiangmiao/auto-pairs'
     Plug 'bronson/vim-trailing-whitespace'
+    Plug 'davidhalter/jedi-vim'
+
+    " NERD Tree File manager
+    Plug 'scrooloose/nerdtree'
+    Plug 'jistr/vim-nerdtree-tabs'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Add plugins to &runtimepath
 call plug#end()
