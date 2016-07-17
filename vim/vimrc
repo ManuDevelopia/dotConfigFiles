@@ -19,7 +19,7 @@ set autoread            " Watch for external changes of a file
 set ruler		        " show current position
 set magic	        	" magic for regular expression
 set showcmd		        " display incomplete commands
-set clipboard=unnamedplus " Enable system clipboard
+set clipboard=unnamed   " Enable system clipboard
 
 " List completions
 set wildmenu
