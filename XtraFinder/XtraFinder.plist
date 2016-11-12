@@ -5,9 +5,7 @@
 	<key>XtraFinder_ShowStatusBarIcon</key>
 	<false/>
 	<key>XtraFinder_XFBackspaceToGoBackPlugin</key>
-	<false/>
-	<key>XtraFinder_XFBrowserViewColorPlugin</key>
-	<false/>
+	<true/>
 	<key>XtraFinder_XFBrowserViewMiddleClickPlugin</key>
 	<true/>
 	<key>XtraFinder_XFColorfulSidebarPlugin</key>
@@ -42,22 +40,40 @@
 	</dict>
 	<key>XtraFinder_XFCopyToActionPlugin_RecentFolders</key>
 	<array>
+		<string>file:///Users/manu/Documents/Personal/Renta/</string>
+		<string>file:///Users/manu/Documents/Fonts/</string>
+		<string>file:///Users/manu/Documents/Personal/Renta/2015/</string>
+		<string>file:///Users/manu/Developer/WebDesign/07-Impetuenergy.com/</string>
+		<string>file:///Users/manu/Developer/WebDesign/07-Impetuenergy.com/Modificaciones/</string>
+		<string>file:///Users/manu/Developer/WebDesign/02-NivelHR/</string>
+		<string>file:///Users/manu/Developer/WebDesign/</string>
+		<string>file:///Users/manu/Documents/development/</string>
 		<string>file:///Applications/</string>
-		<string>file:///Users/manu/Documents/UNED/2015-2016/Disen%CC%83o%20del%20Software/Practicas/Bibliografia/</string>
-		<string>file:///Users/manu/Documents/UNED/2015-2016/Disen%CC%83o%20del%20Software/Practicas/</string>
-		<string>file:///Users/manu/Documents/UNED/2015-2016/Fundamentos%20de%20Programacio%CC%81n/</string>
-		<string>file:///Volumes/UNTITLED/</string>
-		<string>file:///Users/manu/Downloads/eBooks/</string>
-		<string>file:///Users/manu/Documents/UNED/2015-2016/</string>
-		<string>file:///Users/manu/Documents/Trabajo/S2Innovation/02_Gestion%20de%20Proyectos/02_Nacionales%20y%20Regionales/PRAETORIAN-Retos2016/Presentacio%CC%81n/</string>
-		<string>file:///Users/manu/Downloads/Emacs%20y%20Vim/</string>
+		<string>file:///Users/manu/Downloads/iso/</string>
 	</array>
 	<key>XtraFinder_XFCutAndPastePlugin</key>
 	<true/>
+	<key>XtraFinder_XFFitColumnWidthPlugin</key>
+	<false/>
 	<key>XtraFinder_XFFitColumnWidthPlugin_Name</key>
 	<true/>
 	<key>XtraFinder_XFLabelsInSidebarPlugin</key>
 	<false/>
+	<key>XtraFinder_XFMakeSymbolicLinkActionPlugin</key>
+	<true/>
+	<key>XtraFinder_XFMakeSymbolicLinkActionPlugin_Shortcut</key>
+	<dict>
+		<key>keyChars</key>
+		<string> </string>
+		<key>keyCharsIgnoringModifiers</key>
+		<string>l</string>
+		<key>keyCode</key>
+		<integer>37</integer>
+		<key>modifierFlags</key>
+		<integer>524288</integer>
+		<key>modifiers</key>
+		<integer>2048</integer>
+	</dict>
 	<key>XtraFinder_XFNewFileActionPlugin</key>
 	<true/>
 	<key>XtraFinder_XFNewFileActionPlugin_Shortcut</key>
@@ -77,6 +93,23 @@
 	<true/>
 	<key>XtraFinder_XFNewTerminalActionPlugin_TerminalApp</key>
 	<integer>1</integer>
+	<key>XtraFinder_XFPathBarBreadcrumbMenuPlugin</key>
+	<true/>
+	<key>XtraFinder_XFPermanentDeletePlugin</key>
+	<true/>
+	<key>XtraFinder_XFPermanentDeletePlugin_Shortcut</key>
+	<dict>
+		<key>keyChars</key>
+		<string></string>
+		<key>keyCharsIgnoringModifiers</key>
+		<string></string>
+		<key>keyCode</key>
+		<integer>51</integer>
+		<key>modifierFlags</key>
+		<integer>524288</integer>
+		<key>modifiers</key>
+		<integer>2048</integer>
+	</dict>
 	<key>XtraFinder_XFRenameActionPlugin</key>
 	<false/>
 	<key>XtraFinder_XFShowAllFilesActionPlugin</key>
@@ -94,9 +127,13 @@
 		<key>modifiers</key>
 		<integer>2048</integer>
 	</dict>
+	<key>XtraFinder_XFSizeOfSelectedItemsInStatusBarPlugin</key>
+	<false/>
+	<key>XtraFinder_XFSizeOfSelectedItemsInStatusBarPlugin_AutoCalculate</key>
+	<false/>
 	<key>XtraFinder_XFTabPlugin</key>
 	<true/>
-	<key>XtraFinder_XFTabPlugin_MiddleClickOpenInSecondPanel</key>
+	<key>XtraFinder_XFTabPlugin_NarrowTabBar</key>
 	<false/>
 	<key>XtraFinder_XFTabPlugin_NewTabShortcut</key>
 	<dict>
@@ -143,9 +180,7 @@
 	<key>XtraFinder_XFTabPlugin_ShowSideBar</key>
 	<true/>
 	<key>XtraFinder_XFTabPlugin_SidebarWidth</key>
-	<real>155</real>
-	<key>XtraFinder_XFTabPlugin_TabStyle</key>
-	<integer>0</integer>
+	<real>192</real>
 	<key>XtraFinder_XFTabPlugin_ToggleDualPanelShortcut</key>
 	<dict>
 		<key>keyCharsIgnoringModifiers</key>
@@ -157,7 +192,14 @@
 	</dict>
 	<key>XtraFinder_XFTabPlugin_UseSelectTabShortcuts</key>
 	<true/>
-	<key>XtraFinder_XFTransparentWindowPlugin</key>
+	<key>XtraFinder_XFToolbarButtonService</key>
 	<false/>
+	<key>XtraFinder_XFToolbarButtonService_Configuration</key>
+	<dict>
+		<key>Identifiers</key>
+		<array/>
+		<key>Index</key>
+		<integer>9223372036854775807</integer>
+	</dict>
 </dict>
 </plist>

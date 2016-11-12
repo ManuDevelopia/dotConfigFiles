@@ -16,10 +16,11 @@ set showmatch           " Show matching brackets.
 set autochdir           " Automatically change window's cwd to file's dir
 set confirm             " get a dialog when :q, :w, or :wq fails
 set autoread            " Watch for external changes of a file
-set ruler		" show current position
-set magic		" magic for regular expression
-set showcmd		" display incomplete command in the lower right corner of the console
-set clipboard=unnamedplus
+set ruler		            " show current position
+set magic		            " magic for regular expression
+set showcmd		          " display incomplete command
+set clipboard=unnamed   " Enable system clipboard
+set termguicolors       " right terminal colors!
 
 " List completions
 set wildmenu
@@ -36,7 +37,7 @@ set termencoding=utf-8
 " Real programmers don't use TABs but spaces
 set tabstop=4
 set softtabstop=0
-set shiftwidth=4
+set shiftwidth=2
 set shiftround
 set expandtab
 
@@ -51,12 +52,12 @@ set nobackup
 set noswapfile
 set nowritebackup
 
-"" Set the init window size
-set lines=38
-set columns=100
-
 " FishShell support for Nerdtree-tabs-git combo
 set shell=sh
+
+" Indents
+set autoindent	 " Copy indent from current line when starting a new line
+set smartindent  " Do smart autoindenting when starting a new line.
 
 "=========================================
 "" Behaviours
@@ -71,6 +72,13 @@ set whichwrap+=<,>,h,l,[,]
 " Remove blank spaces before save
 autocmd BufWritePre * :%s/\s\+$//e
 "autocmd BufWritePre * :FixWhitespace " by Plug-bronson/vim-trailing-whitespace
+
+"=========================================
+"" Mapping Keys
+"=========================================
+
+" Leader Mapping
+let mapleader=' '
 
 
 "=========================================
@@ -90,6 +98,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'altercation/vim-colors-solarized'
     Plug 'whatyouhide/vim-gotham'
     Plug 'tomasr/molokai'
+    Plug 'jacoborus/tender.vim'
 
     " Vim Editor Enhancements
     Plug 'sjl/gundo.vim'
@@ -97,10 +106,18 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'jiangmiao/auto-pairs'
     Plug 'bronson/vim-trailing-whitespace'
     Plug 'davidhalter/jedi-vim'
+    Plug 'nathanaelkane/vim-indent-guides'
+
+    " Programming
+    Plug 'pangloss/vim-javascript'
+    Plug 'vim-syntastic/syntastic'
+    Plug 'jelera/vim-javascript-syntax'
+    Plug 'Raimondi/delimitMate'
+    Plug 'nathanaelkane/vim-indent-guides'
 
     " NERD Tree File manager
     Plug 'scrooloose/nerdtree'
-    Plug 'jistr/vim-nerdtree-tabs'
+    Plug 'majutsushi/tagbar'
     Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Add plugins to &runtimepath
@@ -110,6 +127,7 @@ call plug#end()
 "=========================================
 "" Vim Look and Feel Configuration
 "=========================================
+set termguicolors
 
 " Color scheme {
     " set background=dark        " Makes background dark
@@ -134,4 +152,17 @@ call plug#end()
     let g:airline#extensions#hunks#enabled = 1
     let g:airline#extensions#branch#enabled = 1
     let g:airline#extensions#tagbar#enabled = 1
+" }
+
+" NERDTree {
+    map <leader>n :NERDTreeTabsToggle<CR>
+
+    let g:NERDTreeQuitOnOpen = 1
+    let g:NERDTreeAutoDeleteBuffer = 1
+    let g:NERDTreeMinimalUI = 1
+    let g:NERDTreeDirArrows = 1
+
+    "" NERDTree Tabs
+    let g:nerdtree_tabs_open_on_new_tab = 0
+    let g:nerdtree_tabs_open_on_gui_startup = 0
 " }

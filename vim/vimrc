@@ -16,10 +16,11 @@ set showmatch           " Show matching brackets.
 set autochdir           " Automatically change window's cwd to file's dir
 set confirm             " get a dialog when :q, :w, or :wq fails
 set autoread            " Watch for external changes of a file
-set ruler		        " show current position
-set magic	        	" magic for regular expression
-set showcmd		        " display incomplete commands
+set ruler		            " show current position
+set magic	        	    " magic for regular expression
+set showcmd		          " display incomplete commands
 set clipboard=unnamed   " Enable system clipboard
+set termguicolors       " right terminal colors!
 
 " List completions
 set wildmenu
@@ -50,10 +51,6 @@ set smartcase
 set nobackup
 set noswapfile
 set nowritebackup
-
-"" Set the init window size
-set lines=38
-set columns=100
 
 " FishShell support for Nerdtree-tabs-git combo
 set shell=sh
@@ -153,8 +150,10 @@ call plug#begin('~/.vim/plugged')
     " Vim Editor Enhancements
     Plug 'sjl/gundo.vim'
     Plug 'tpope/vim-commentary'
-    Plug 'jiangmiao/auto-pairs'
+"    Plug 'jiangmiao/auto-pairs'
+    Plug 'Raimondi/delimitMate'
     Plug 'bronson/vim-trailing-whitespace'
+    Plug 'nathanaelkane/vim-indent-guides'
 
     " Unite
     " Plug 'Shougo/unite.vim'
@@ -179,6 +178,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'Xuyuanp/nerdtree-git-plugin'
 
     " Languajes Support
+    Plug 'pangloss/vim-javascript'
+    Plug 'jelera/vim-javascript-syntax'
 
     " Completion and utilities
     Plug 'lilydjwg/colorizer'
@@ -266,7 +267,3 @@ call plug#end()
     nmap <Leader>c <Plug>CommentaryLine
     xmap <Leader>c <Plug>Commentary
 " }
-
-
-""" Experimental settings and actions
-
