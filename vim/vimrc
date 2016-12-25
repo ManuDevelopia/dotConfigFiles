@@ -35,9 +35,9 @@ set fenc=utf-8
 set termencoding=utf-8
 
 " Real programmers don't use TABs but spaces
-set tabstop=4
+set tabstop=2
 set softtabstop=0
-set shiftwidth=4
+set shiftwidth=2
 set shiftround
 set expandtab
 
@@ -178,15 +178,21 @@ call plug#begin('~/.vim/plugged')
     Plug 'Xuyuanp/nerdtree-git-plugin'
 
     " Languajes Support
+
+    " Javascript
     Plug 'pangloss/vim-javascript'
     Plug 'jelera/vim-javascript-syntax'
+    Plug 'othree/jspc.vim'
+    Plug 'burnettk/vim-angular'
+    Plug 'moll/vim-node'
 
     " Completion and utilities
     Plug 'lilydjwg/colorizer'
     Plug 'majutsushi/tagbar'
     Plug 'scrooloose/syntastic'
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer --clang-completer' }
-
+    " Plug 'SirVer/ultisnips'
+    " Plug 'honza/vim-snippets'
 " }
 
 " Add plugins to &runtimepath
@@ -242,6 +248,7 @@ call plug#end()
     let g:NERDTreeAutoDeleteBuffer = 1
     let g:NERDTreeMinimalUI = 1
     let g:NERDTreeDirArrows = 1
+    let NERDTreeMapOpenInTab='\r'
 
     "" NERDTree Tabs
     let g:nerdtree_tabs_open_on_new_tab = 0

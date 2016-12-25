@@ -103,22 +103,38 @@ call plug#begin('~/.config/nvim/plugged')
     " Vim Editor Enhancements
     Plug 'sjl/gundo.vim'
     Plug 'tpope/vim-commentary'
-    Plug 'jiangmiao/auto-pairs'
+"    Plug 'jiangmiao/auto-pairs'
     Plug 'bronson/vim-trailing-whitespace'
-    Plug 'davidhalter/jedi-vim'
+"    Plug 'davidhalter/jedi-vim'
     Plug 'nathanaelkane/vim-indent-guides'
 
     " Programming
     Plug 'pangloss/vim-javascript'
     Plug 'vim-syntastic/syntastic'
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer --clang-completer' }
     Plug 'jelera/vim-javascript-syntax'
+    Plug 'othree/yajs.vim', { 'for': 'javascript' }
     Plug 'Raimondi/delimitMate'
     Plug 'nathanaelkane/vim-indent-guides'
+    Plug 'burnettk/vim-angular'
+    Plug 'neomake/neomake'
+    Plug 'mattn/emmet-vim/'
+    Plug 'moll/vim-node'
+
+    " Track the engine.
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
+    Plug 'burnettk/vim-angular'
+    Plug 'matthewsimo/angular-vim-snippets'
 
     " NERD Tree File manager
     Plug 'scrooloose/nerdtree'
-    Plug 'majutsushi/tagbar'
+    Plug 'jistr/vim-nerdtree-tabs'
     Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'majutsushi/tagbar'
+
+    Plug 'ap/vim-css-color'
+    Plug 'heavenshell/vim-jsdoc'
 
 " Add plugins to &runtimepath
 call plug#end()
