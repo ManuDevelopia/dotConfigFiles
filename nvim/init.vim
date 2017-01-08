@@ -182,3 +182,9 @@ set termguicolors
     let g:nerdtree_tabs_open_on_new_tab = 0
     let g:nerdtree_tabs_open_on_gui_startup = 0
 " }
+
+" UltiSnips {
+  let g:UltiSnipsExpandTrigger="<c-j>"
+  let g:UltiSnipsJumpForwardTrigger="<c-j>"
+  let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" }

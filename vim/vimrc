@@ -77,6 +77,10 @@ autocmd BufWritePre * :FixWhitespace " by Plug-bronson/vim-trailing-whitespace
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
+" Open new files in tabs
+"autocmd VimEnter * tab all
+" autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
+
 "=========================================
 "" Mapping Keys
 "=========================================
@@ -84,55 +88,63 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 " Leader Mapping
 let mapleader=' '
 
-" Cursor moves accross the wrapped line {
-    vmap <silent> <Right> l
-    vmap <silent> <Left> h
-    vmap <silent> <Up> gk
-    vmap <silent> <Down> gj
-    nmap <silent> <Right> l
-    nmap <silent> <Left> h
-    nmap <silent> <Up> gk
-    nmap <silent> <Down> gj
-    imap <silent> <Up> <C-o>gk
-    imap <silent> <Down> <C-o>gj
-    imap <silent> <Right> <C-o>l
-    imap <silent> <Left> <C-o>h
-"}
+" Tab navigation like Firefox.
+nnoremap <C-S-tab> :tabprevious<CR>
+nnoremap <C-tab>   :tabnext<CR>
+nnoremap <C-t>     :tabnew<CR>
+inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+inoremap <C-tab>   <Esc>:tabnext<CR>i
+inoremap <C-t>     <Esc>:tabnew<CR>
+nnoremap <C-Delete> :tabclose<CR>
+" " Cursor moves accross the wrapped line {
+"     vmap <silent> <Right> l
+"     vmap <silent> <Left> h
+"     vmap <silent> <Up> gk
+"     vmap <silent> <Down> gj
+"     nmap <silent> <Right> l
+"     nmap <silent> <Left> h
+"     nmap <silent> <Up> gk
+"     nmap <silent> <Down> gj
+"     imap <silent> <Up> <C-o>gk
+"     imap <silent> <Down> <C-o>gj
+"     imap <silent> <Right> <C-o>l
+"     imap <silent> <Left> <C-o>h
+" "}
 
-"" Split window horizonatal and vertical
+" "" Split window horizonatal and vertical
 noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
 
-"" Buffer nav {
-    "" Prev Buff
-    noremap <leader>q :bp<CR>
-    "" Next Buff
-    noremap <leader>w :bn<CR>
-    "" Close buffer
-    noremap <leader>e :bd<CR>
-" }
+" "" Buffer nav {
+"     "" Prev Buff
+"     noremap <leader>q :bp<CR>
+"     "" Next Buff
+"     noremap <leader>w :bn<CR>
+"     "" Close buffer
+"     noremap <leader>e :bd<CR>
+" " }
 
-" shift+arrow Selection Mapping {
-    nmap <S-Up>     gh<S-Up>
-    nmap <S-Down>   gh<S-Down>
-    nmap <S-Left>   v<C-g><Left>
-    nmap <S-Right>  v<C-g><Right>
+" " shift+arrow Selection Mapping {
+"     nmap <S-Up>     gh<S-Up>
+"     nmap <S-Down>   gh<S-Down>
+"     nmap <S-Left>   v<C-g><Left>
+"     nmap <S-Right>  v<C-g><Right>
 
-    vmap <S-Left>   <Left>
-    vmap <S-Right>  <Right>
-    vmap <S-Up>     gk
-    vmap <S-Down>   gj
+"     vmap <S-Left>   <Left>
+"     vmap <S-Right>  <Right>
+"     vmap <S-Up>     gk
+"     vmap <S-Down>   gj
 
-    imap <S-Up>     <Esc>gh<S-Up>
-    imap <S-Down>   <Esc><Right>gh<S-Down>
-    imap <S-Left>   <Esc>v<C-g><Left><Right>
-    imap <S-Right>  <Right><Esc>v<C-g><Right><Left>
-" }
+"     imap <S-Up>     <Esc>gh<S-Up>
+"     imap <S-Down>   <Esc><Right>gh<S-Down>
+"     imap <S-Left>   <Esc>v<C-g><Left><Right>
+"     imap <S-Right>  <Right><Esc>v<C-g><Right><Left>
+" " }
 
-" Keep Visual selection after shifting{
-    vnoremap > <gv
-    vnoremap < >gv
-" }
+" " Keep Visual selection after shifting{
+"     vnoremap > <gv
+"     vnoremap < >gv
+" " }
 
 "=========================================
 "" Bundles Pluggins by Vim-Plug
@@ -161,11 +173,11 @@ call plug#begin('~/.vim/plugged')
 
     " Themes & Visual look and feel
     Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
+    " Plug 'vim-airline/vim-airline-themes'
     Plug 'altercation/vim-colors-solarized'
     Plug 'whatyouhide/vim-gotham'
-    Plug 'tomasr/molokai'
-    Plug 'ninja/sky'
+    " Plug 'tomasr/molokai'
+    " Plug 'ninja/sky'
 
     " Control Version
     Plug 'cohama/agit.vim'
