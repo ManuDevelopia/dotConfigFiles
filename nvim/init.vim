@@ -97,44 +97,41 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'vim-airline/vim-airline-themes'
     Plug 'altercation/vim-colors-solarized'
     Plug 'whatyouhide/vim-gotham'
-    Plug 'tomasr/molokai'
     Plug 'jacoborus/tender.vim'
 
     " Vim Editor Enhancements
     Plug 'sjl/gundo.vim'
     Plug 'tpope/vim-commentary'
-"    Plug 'jiangmiao/auto-pairs'
     Plug 'bronson/vim-trailing-whitespace'
-"    Plug 'davidhalter/jedi-vim'
     Plug 'nathanaelkane/vim-indent-guides'
+    Plug 'Raimondi/delimitMate'
 
-    " Programming
+    " Programming utilities
     Plug 'pangloss/vim-javascript'
     Plug 'vim-syntastic/syntastic'
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer --clang-completer' }
-    Plug 'jelera/vim-javascript-syntax'
+
     Plug 'othree/yajs.vim', { 'for': 'javascript' }
-    Plug 'Raimondi/delimitMate'
     Plug 'nathanaelkane/vim-indent-guides'
+    Plug 'majutsushi/tagbar'
+
+    " Programming Languajes and frameworks
     Plug 'burnettk/vim-angular'
-    Plug 'neomake/neomake'
-    Plug 'mattn/emmet-vim/'
     Plug 'moll/vim-node'
+    Plug 'jelera/vim-javascript-syntax'
 
     " Track the engine.
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
-    Plug 'burnettk/vim-angular'
-    Plug 'matthewsimo/angular-vim-snippets'
 
     " NERD Tree File manager
     Plug 'scrooloose/nerdtree'
     Plug 'jistr/vim-nerdtree-tabs'
     Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'majutsushi/tagbar'
 
     Plug 'ap/vim-css-color'
     Plug 'heavenshell/vim-jsdoc'
+    Plug 'ervandew/supertab'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -184,7 +181,15 @@ set termguicolors
 " }
 
 " UltiSnips {
-  let g:UltiSnipsExpandTrigger="<c-j>"
-  let g:UltiSnipsJumpForwardTrigger="<c-j>"
-  let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+  " better key bindings for UltiSnipsExpandTrigger
+    let g:UltiSnipsExpandTrigger = "<tab>"
+    let g:UltiSnipsJumpForwardTrigger = "<tab>"
+    let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 " }
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+

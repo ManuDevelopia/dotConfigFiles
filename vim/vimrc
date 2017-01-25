@@ -197,6 +197,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'othree/jspc.vim'
     Plug 'burnettk/vim-angular'
     Plug 'moll/vim-node'
+    Plug 'ternjs/tern_for_vim'
 
     " Completion and utilities
     Plug 'lilydjwg/colorizer'
@@ -285,4 +286,11 @@ call plug#end()
 " Vim-Commentary Line {
     nmap <Leader>c <Plug>CommentaryLine
     xmap <Leader>c <Plug>Commentary
+" }
+
+" TernJS {
+"enable keyboard shortcuts
+let g:tern_map_keys=1
+"show argument hints
+let g:tern_show_argument_hints='on_hold'
 " }
