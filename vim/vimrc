@@ -179,6 +179,9 @@ call plug#begin('~/.vim/plugged')
     " Plug 'tomasr/molokai'
     " Plug 'ninja/sky'
 
+    " Developer
+    Plug 'sidorares/node-vim-debugger'
+
     " Control Version
     Plug 'cohama/agit.vim'
     Plug 'tpope/vim-fugitive'

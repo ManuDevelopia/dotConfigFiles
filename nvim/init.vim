@@ -120,6 +120,11 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'moll/vim-node'
     Plug 'jelera/vim-javascript-syntax'
 
+    " Control Version
+    Plug 'cohama/agit.vim'
+    Plug 'tpope/vim-fugitive'
+    Plug 'airblade/vim-gitgutter'
+
     " Track the engine.
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
@@ -192,4 +197,5 @@ let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml"
 
