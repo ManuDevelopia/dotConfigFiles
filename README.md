@@ -20,3 +20,5 @@ XtraFinder
 zsh-ohmyzsh
 FishShell
 
+# Others
+Spotify playslit
