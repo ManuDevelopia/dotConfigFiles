@@ -1,4 +1,3 @@
-
 "" Vim Stuff
 set nocompatible
 
@@ -16,9 +15,9 @@ set showmatch           " Show matching brackets.
 set autochdir           " Automatically change window's cwd to file's dir
 set confirm             " get a dialog when :q, :w, or :wq fails
 set autoread            " Watch for external changes of a file
-set ruler		            " show current position
-set magic	        	    " magic for regular expression
-set showcmd		          " display incomplete commands
+set ruler		        " show current position
+set magic	        	" magic for regular expression
+set showcmd		        " display incomplete commands
 set clipboard=unnamed   " Enable system clipboard
 set termguicolors       " right terminal colors!
 
@@ -52,182 +51,30 @@ set nobackup
 set noswapfile
 set nowritebackup
 
-" FishShell support for Nerdtree-tabs-git combo
-set shell=sh
-
-" Indents
-set autoindent	 " Copy indent from current line when starting a new line
-set smartindent  " Do smart autoindenting when starting a new line.
-
-"=========================================
-"" Behaviours
-"=========================================
-
-"" Fix backspace indent
-set backspace=indent,eol,start
-
-" Left goes back to the en-prev line
-set whichwrap+=<,>,h,l,[,]
-
-" Remove blank spaces before save
-"autocmd BufWritePre * :%s/\s\+$//e
-autocmd BufWritePre * :FixWhitespace " by Plug-bronson/vim-trailing-whitespace
-
-" autoClose Preview after selection is made
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
-" Open new files in tabs
-"autocmd VimEnter * tab all
-" autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
-
-"=========================================
-"" Mapping Keys
-"=========================================
-
-" Leader Mapping
-let mapleader=' '
-
-" Tab navigation like Firefox.
-nnoremap <C-S-tab> :tabprevious<CR>
-nnoremap <C-tab>   :tabnext<CR>
-nnoremap <C-t>     :tabnew<CR>
-inoremap <C-S-tab> <Esc>:tabprevious<CR>i
-inoremap <C-tab>   <Esc>:tabnext<CR>i
-inoremap <C-t>     <Esc>:tabnew<CR>
-nnoremap <C-Delete> :tabclose<CR>
-" " Cursor moves accross the wrapped line {
-"     vmap <silent> <Right> l
-"     vmap <silent> <Left> h
-"     vmap <silent> <Up> gk
-"     vmap <silent> <Down> gj
-"     nmap <silent> <Right> l
-"     nmap <silent> <Left> h
-"     nmap <silent> <Up> gk
-"     nmap <silent> <Down> gj
-"     imap <silent> <Up> <C-o>gk
-"     imap <silent> <Down> <C-o>gj
-"     imap <silent> <Right> <C-o>l
-"     imap <silent> <Left> <C-o>h
-" "}
-
-" "" Split window horizonatal and vertical
-noremap <Leader>h :<C-u>split<CR>
-noremap <Leader>v :<C-u>vsplit<CR>
-
-" "" Buffer nav {
-"     "" Prev Buff
-"     noremap <leader>q :bp<CR>
-"     "" Next Buff
-"     noremap <leader>w :bn<CR>
-"     "" Close buffer
-"     noremap <leader>e :bd<CR>
-" " }
-
-" " shift+arrow Selection Mapping {
-"     nmap <S-Up>     gh<S-Up>
-"     nmap <S-Down>   gh<S-Down>
-"     nmap <S-Left>   v<C-g><Left>
-"     nmap <S-Right>  v<C-g><Right>
-
-"     vmap <S-Left>   <Left>
-"     vmap <S-Right>  <Right>
-"     vmap <S-Up>     gk
-"     vmap <S-Down>   gj
-
-"     imap <S-Up>     <Esc>gh<S-Up>
-"     imap <S-Down>   <Esc><Right>gh<S-Down>
-"     imap <S-Left>   <Esc>v<C-g><Left><Right>
-"     imap <S-Right>  <Right><Esc>v<C-g><Right><Left>
-" " }
-
-" " Keep Visual selection after shifting{
-"     vnoremap > <gv
-"     vnoremap < >gv
-" " }
-
-"=========================================
-"" Bundles Pluggins by Vim-Plug
-"
-" to install:
-"     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"=========================================
-
 " Vim-Plug init
 call plug#begin('~/.vim/plugged')
 
 " Vim Packages {
 
-    " Vim Editor Enhancements
-    Plug 'sjl/gundo.vim'
-    Plug 'tpope/vim-commentary'
-"    Plug 'jiangmiao/auto-pairs'
-    Plug 'Raimondi/delimitMate'
-    Plug 'bronson/vim-trailing-whitespace'
-    Plug 'nathanaelkane/vim-indent-guides'
-
-    " Unite
-    " Plug 'Shougo/unite.vim'
-    " Plug 'Shougo/vimproc.vim', {'do': 'make' }
-
     " Themes & Visual look and feel
     Plug 'vim-airline/vim-airline'
-    " Plug 'vim-airline/vim-airline-themes'
     Plug 'altercation/vim-colors-solarized'
     Plug 'whatyouhide/vim-gotham'
-    " Plug 'tomasr/molokai'
-    " Plug 'ninja/sky'
 
-    " Developer
-    Plug 'sidorares/node-vim-debugger'
-
-    " Control Version
-    Plug 'cohama/agit.vim'
-    Plug 'tpope/vim-fugitive'
-    Plug 'airblade/vim-gitgutter'
-
-    " NERD Tree File manager
-    Plug 'scrooloose/nerdtree'
-    Plug 'jistr/vim-nerdtree-tabs'
-    Plug 'Xuyuanp/nerdtree-git-plugin'
-
-    " Languajes Support
-
-    " Javascript
-    Plug 'pangloss/vim-javascript'
-    Plug 'jelera/vim-javascript-syntax'
-    Plug 'othree/jspc.vim'
-    Plug 'burnettk/vim-angular'
-    Plug 'moll/vim-node'
-    Plug 'ternjs/tern_for_vim'
-
-    " Completion and utilities
-    Plug 'lilydjwg/colorizer'
-    Plug 'majutsushi/tagbar'
-    Plug 'scrooloose/syntastic'
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer --clang-completer' }
-    " Plug 'SirVer/ultisnips'
-    " Plug 'honza/vim-snippets'
 " }
-
 " Add plugins to &runtimepath
 call plug#end()
+
 
 "=========================================
 "" Vim Look and Feel Configuration
 "=========================================
 
 " Color scheme {
-    "set background=dark        " Makes background dark
     "colorscheme solarized      " Classic Dark Solarized
     colorscheme gotham          " Gotham dark theme
 "}
 
-" Visual limit of 80 column (Load after colorscheme) {
-    let &colorcolumn="80,".join(range(120,999),",")
-    highlight ColorColumn ctermbg=235 guibg=#0A1F2C
-" }
 
 "=========================================
 "" Bundles Configuration
@@ -255,45 +102,4 @@ call plug#end()
     let g:airline_exclude_preview=1
     let airline#extensions#tabline#ignore_bufadd_pat =
             \ '\c\vgundo|undotree|vimfiler|tagbar|nerd_tree'
-" }
-
-" NERDTree {
-    map <leader>n :NERDTreeTabsToggle<CR>
-
-    let g:NERDTreeQuitOnOpen = 1
-    let g:NERDTreeAutoDeleteBuffer = 1
-    let g:NERDTreeMinimalUI = 1
-    let g:NERDTreeDirArrows = 1
-    let NERDTreeMapOpenInTab='\r'
-
-    "" NERDTree Tabs
-    let g:nerdtree_tabs_open_on_new_tab = 0
-    let g:nerdtree_tabs_open_on_gui_startup = 0
-" }
-
-" Gundo {
-    nnoremap <leader>u :GundoToggle<CR>
-
-    set undodir=~/.vim/undodir
-    set undofile
-    set undolevels=1000
-    set undoreload=10000
-" }
-
-" Tagbar CTags {
-    nmap <leader>t :TagbarToggle<CR>
-
-    let g:tagbar_autofocus = 1
-" }
-
-" Vim-Commentary Line {
-    nmap <Leader>c <Plug>CommentaryLine
-    xmap <Leader>c <Plug>Commentary
-" }
-
-" TernJS {
-"enable keyboard shortcuts
-let g:tern_map_keys=1
-"show argument hints
-let g:tern_show_argument_hints='on_hold'
 " }
